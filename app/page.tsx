@@ -1,9 +1,89 @@
-import Image from "next/image";
+import Categories from "@/src/components/Categories";
+import Footer from "@/src/components/Footer";
+import HomePageCTA from "@/src/components/HomePageCTA";
+import SearchFilter from "@/src/components/Search/SearchFilter";
+import FeaturedProduct from "@/src/components/Product/FeaturedProduct";
+import React from "react";
+import GoogleAd from "@/src/components/Ads";
+import { CreditCard, HandCoins, Package } from "lucide-react";
+import CustomAd from "@/src/components/CustomAd";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
+    <div>
+      <HomePageCTA />
+
+      <div className="mx-2 px-3 py-4 sm:px-4 sm:py-6 lg:px-4">
+        <header>
+          <h2 className="text-2xl font-bold text-lime-400 sm:text-3xl">
+            Our Product Collection
+          </h2>
+          <span className="text-red-300 text-sm">Discover Amazing Deals</span>
+
+          <p className="my-4 max-md:max-w-md text-base text-gray-500">
+            Shop the latest tech with exclusive offers. Lorem ipsum, dolor sit
+            amet consectetur adipisicing elit. Itaque praesentium cumque iure
+            dicta incidunt est ipsam, officia dolor fugit natus?
+          </p>
+        </header>
+
+        <div className="flex md:items-start items-center w-full --justify-around gap-5">
+          <SearchFilter />
+
+          <div className="w-full flex flex-col lg:flex-row justify-between  lg:items-stretch gap-5">
+            <section>
+              <Categories
+                categoryTitle={process.env.NEXT_PUBLIC_CATEGORY1!}
+                displayAllProducts={false}
+              />
+              <Categories
+                categoryTitle={process.env.NEXT_PUBLIC_CATEGORY2!}
+                displayAllProducts={false}
+              />
+
+              <CustomAd />
+            </section>
+
+            <section>
+              <FeaturedProduct />
+              <FeaturedProduct />
+            </section>
+          </div>
+        </div>
+      </div>
+
+      <section>
+        <GoogleAd adSlot="G-9876543210" /> {/* Replace with your ad slot */}
+      </section>
+
+      <section className="bg-gray-100 mb-2 --max-w-7xl mx-auto py-16 px-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="text-center space-y-4">
+            <Package className="mx-auto transition hover:scale-105 text-lime-600" size={78} />
+            <h3 className="text-xl font-semibold">Free Shipping</h3>
+            <p className="text-gray-600">On orders over NGN 100,000</p>
+          </div>
+          <div className="text-center space-y-4">
+            <HandCoins className="mx-auto transition hover:scale-105 text-lime-600" size={78} />
+            <h3 className="text-xl font-semibold">Money Back</h3>
+            <p className="text-gray-600">30 day guarantee</p>
+          </div>
+          <div className="text-center space-y-4">
+            <CreditCard className="mx-auto transition hover:scale-105 text-lime-600" size={78} />
+            <h3 className="text-xl font-semibold">Secure Payment</h3>
+            <p className="text-gray-600">100% secure checkout</p>
+          </div>
+        </div>
+      </section>
+
+      <div className="px-10 mx-auto">
+        <Categories
+          categoryTitle={process.env.NEXT_PUBLIC_CATEGORY3!}
+          displayAllProducts={false}
+        />
+      </div>
+
+      {/* <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
         <Image
           className="dark:invert"
           src="/next.svg"
@@ -49,53 +129,9 @@ export default function Home() {
           </a>
         </div>
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+     */}
+
+      <Footer />
     </div>
   );
 }
