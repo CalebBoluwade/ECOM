@@ -71,7 +71,7 @@ const NavBar = ({
   return (
     <nav
       //
-      className="flex sticky top-0 left-0 right-0 bg-white/65 z-50 backdrop-blur-md h-16 border-b text-sm px-2 py-4 right justify-between items-center"
+      className="flex sticky top-0 left-0 right-0 bg-white/65 backdrop-blur-md h-16 border-b text-sm px-2 py-4 right justify-between items-center"
     >
       <Link href="/" className="text-teal-600">
         <Target />
@@ -97,7 +97,7 @@ const NavBar = ({
           </dt>
 
           <dd
-            className={`z-50 top-7 ${
+            className={`top-7 ${
               openCategories ? "block" : "hidden"
             } border transition duration-300 absolute w-36 space-y-3 bg-gray-100/50 rounded py-4`}
           >
@@ -195,19 +195,19 @@ const NavBar = ({
         openCloseSignInModal={setIsModalOpen}
       /> */}
       <div
-        className={`fixed inset-0 bg-black bg-opacity-50 z-50 transition-opacity duration-300 ${
+        className={`h-full fixed inset-0 bg-black bg-opacity-50 z-50 transition-opacity duration-300 ${
           isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
         onClick={() => setIsOpen(false)}
       >
         <div
-          className={`fixed inset-y-0 left-0 w-64 bg-white shadow-lg transform transition-transform duration-300 ${
+          className={`--fixed inset-y-0 left-0 w-64 bg-white shadow-lg transform transition-transform duration-300 ${
             isOpen ? "translate-x-0" : "-translate-x-full"
           }`}
           onClick={(e) => e.stopPropagation()}
         >
           {/* Sidebar Header */}
-          <div className="flex items-center justify-between px-4 py-2 border-b">
+          <div className="flex items-center justify-between px-4 py-3 border-b">
             <Link href="/" className="inline-flex gap-2 items-center">
               <Target className="text-teal-600" />
               <span className="text-xl font-bold">Menu</span>

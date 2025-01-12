@@ -4,7 +4,7 @@ import {
   fetchProducts,
   fetchSingleProduct,
 } from "../actions/Products";
-import { fetchBrands } from "../actions/Brands";
+import { fetchBrandProducts, fetchBrands } from "../actions/Brands";
 
 interface ProductState {
   allProducts: IProduct[];
@@ -33,12 +33,8 @@ const initialState: ProductState = {
     isFeatured: false,
     quantity: 0,
     images: [],
-    manufacturer: {
-      name: "",
-      image: "",
-      slug: ""
-    },
-    specification: [],
+    manufacturer: "",
+    specifications: [],
     slug: "",
   },
   loading: false,
@@ -89,6 +85,10 @@ const productSlice = createSlice({
       .addCase(fetchBrands.fulfilled, (state, action) => {
         state.loading = false;
         state.partnerBrands = action.payload;
+      })
+      .addCase(fetchBrandProducts.fulfilled, (state, action) => {
+        state.loading = false;
+        state.filteredProducts = action.payload;
       })
       .addCase(fetchDistinctCategories.fulfilled, (state, action) => {
         state.filters.categories = action.payload.flatMap((x) =>

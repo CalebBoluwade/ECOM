@@ -35,7 +35,7 @@ const FeaturedProduct = ({
       {randomFeaturedProduct && (
         <>
           <Image
-            src={(randomFeaturedProduct.images[0] ??= "")}
+            src={(randomFeaturedProduct ? randomFeaturedProduct.images[0] : "")}
             alt={randomFeaturedProduct.name + randomFeaturedProduct.slug}
             width={850}
             height={200}

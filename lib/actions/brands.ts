@@ -4,6 +4,8 @@ import { cache } from "react";
 import dbConnector from "../db/connector";
 import Brand from "../db/models/Brand";
 import seedBrands from "../utils/brands";
+import Product from "../db/models/Product";
+import mongoose from "mongoose";
 
 export async function seedBrandData() {
   try {
@@ -38,5 +40,50 @@ export const ListBrands = cache(
       // description: product.description,
       slug: brand._id.toString(), // Convert ObjectId to string
     })) as IBrand[];
+  }
+);
+
+export const ListBrandProducts = cache(
+  async (
+    manufacturerId: string
+    // filter: Partial<IProduct> = {}
+    // limit?: number
+  ): Promise<IProduct[]> => {
+    await dbConnector();
+
+    console.log(manufacturerId)
+
+    // Build query
+    const query = {
+      manufacturerId: new mongoose.Types.ObjectId(manufacturerId),
+    };
+
+    const products = await Product.find(query)
+      // .filter((product) => product.manufacturer.slug === manufacturer.slug.toLowerCase())
+      .sort({ _id: -1 })
+      // .limit(3)
+      .exec();
+
+    return products.map((product) => ({
+      name: product.name,
+      price: product.price,
+      currency: product.currency,
+      discountPercentage: product.discountPercentage,
+      cartQuantity: product.cartQuantity,
+      images: product.images,
+      quantity: product.quantity,
+      description: product.description,
+      categories: product.categories,
+      manufacturer: product.manufacturer.toString(),
+      isFeatured: product.isFeatured,
+      warranty: product.warranty,
+      specifications: product.specifications,
+      reviews: product.reviews.map((r: any) => ({
+        user: String(r.user),
+        rating: r.rating,
+        reviews: r.reviews,
+      })),
+      slug: product.slug, // Convert ObjectId to string
+    })) as IProduct[];
   }
 );

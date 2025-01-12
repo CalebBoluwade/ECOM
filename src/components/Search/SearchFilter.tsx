@@ -27,8 +27,8 @@ const SearchFilter = ({
             <Link
             className="decoration-0"
               href={{
-                pathname: `/category`,
-                query: { category: category },
+                pathname: `/categories/${category}`,
+                // query: { category: category },
               }}
             >
               {capitalizeFirstLetter(category)}

@@ -81,7 +81,7 @@ const HomePageCTA = () => {
               {/* <div className="mt-4 sm:mt-8"> */}
               <Link
                 href="#"
-                className="inline-block z-50 rounded-full bg-lime-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-lime-700 focus:outline-none focus:ring focus:ring-yellow-400"
+                className="inline-block --z-50 rounded-full bg-lime-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-lime-700 focus:outline-none focus:ring focus:ring-yellow-400"
               >
                 Get Yours Today
               </Link>

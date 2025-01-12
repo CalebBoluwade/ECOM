@@ -15,11 +15,9 @@ const Brand = ({ partnerBrands }: { partnerBrands: IBrand[] }) => {
   console.log(partnerBrands);
 
   useEffect(() => {
-
-      if (!partnerBrands.length) {
-        seedBrandData();
-      }
-
+    if (!partnerBrands.length) {
+      seedBrandData();
+    }
 
     dispatch(fetchBrands());
   }, [dispatch, partnerBrands.length]);
@@ -36,7 +34,7 @@ const Brand = ({ partnerBrands }: { partnerBrands: IBrand[] }) => {
           {(partnerBrands ??= []).length >= 1 &&
             (partnerBrands ??= []).map((partner) => (
               // <Partner key={partner.slug} partner={partner} />
-              <Link href={`/brand/${partner.slug}`} key={partner.slug}>
+              <Link href={`/brands/brand-products/${partner.slug}`} key={partner.slug}>
                 <Image
                   src={partner.image}
                   alt={partner.name}

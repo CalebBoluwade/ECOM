@@ -22,7 +22,7 @@ interface IProduct {
   quantity: number;
   description: string;
   categories: string[];
-  manufacturer: IBrand;
+  manufacturer: string;
   warranty: string;
   isFeatured: boolean;
   reviews: Review[];
@@ -30,6 +30,19 @@ interface IProduct {
   discountPercentage: number;
   images: string[];
   cartQuantity: number;
+}
+
+interface ProductQuery {
+  // manufacturerId: mongoose.Types.ObjectId;
+  $or?: Array<{
+    [key: string]: any;
+  }>;
+  category?: string;
+  price?: {
+    $gte?: number;
+    $lte?: number;
+  };
+  inStock?: boolean;
 }
 
 interface IUser {
