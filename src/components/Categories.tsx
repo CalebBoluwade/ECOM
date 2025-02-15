@@ -16,7 +16,8 @@ const Categories = ({
   displayAllProducts: boolean;
   products: IProduct[];
 }) => {
-  const filterCategories = categoryTitle.split(",");
+  console.log("categoryTitle:", categoryTitle);
+  const filterCategories = (categoryTitle ?? "").split(",");
   const filteredProducts = products.filter((product) =>
     filterCategories.some((category) => {
       // console.log(product.categories, category, filterCategories);

@@ -71,9 +71,9 @@ const SearchFilter = ({
       <div>
         <p className="block text-xs font-medium text-gray-700">Filters</p>
 
-        <div className="mt-1 space-y-2">
-          <details className="overflow-hidden rounded border border-gray-300 [&_summary::-webkit-details-marker]:hidden">
-            <summary className="flex cursor-pointer items-center justify-between gap-2 p-4 text-gray-900 transition">
+        <div className="mt-1 flex flex-wrap gap-4">
+        <details className="overflow-hidden rounded border border-gray-300 flex-1">
+        <summary className="flex cursor-pointer items-center justify-between gap-2 p-4 text-gray-900 transition">
               <span className="text-sm font-medium"> Availability </span>
 
               <span className="transition group-open:-rotate-180">

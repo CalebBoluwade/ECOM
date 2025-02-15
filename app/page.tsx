@@ -14,41 +14,39 @@ export default function Home() {
       <HomePageCTA />
 
       <div className="mx-2 px-3 py-4 sm:px-4 sm:py-6 lg:px-4">
-        <header>
-          <h2 className="text-2xl font-bold text-lime-400 sm:text-3xl">
+        <header className="text-center mx-auto max-w-2xl">
+          <h2 className="text-2xl font-bold text-[#65A30D] sm:text-3xl">
             Our Product Collection
           </h2>
-          <span className="text-red-300 text-sm">Discover Amazing Deals</span>
-
-          <p className="my-4 max-md:max-w-md text-base text-gray-500">
+          <span className="text-[#6B7280] text-sm">Discover Amazing Deals</span>
+          <p className="my-4 text-base text-gray-500">
             Shop the latest tech with exclusive offers. Lorem ipsum, dolor sit
-            amet consectetur adipisicing elit. Itaque praesentium cumque iure
-            dicta incidunt est ipsam, officia dolor fugit natus?
+            amet consectetur adipisicing elit.
           </p>
         </header>
 
-        <div className="flex md:items-start items-center w-full --justify-around gap-5">
+        <div className="flex flex-wrap items-center justify-center gap-5 my-4">
           <SearchFilter />
+        </div>
 
-          <div className="w-full flex flex-col lg:flex-row justify-between  lg:items-stretch gap-5">
-            <section>
-              <Categories
-                categoryTitle={process.env.NEXT_PUBLIC_CATEGORY1!}
-                displayAllProducts={false}
-              />
-              <Categories
-                categoryTitle={process.env.NEXT_PUBLIC_CATEGORY2!}
-                displayAllProducts={false}
-              />
+        {/* Content layout */}
+        <div className="w-full flex flex-col lg:flex-row justify-between gap-5">
+          <section>
+            <Categories
+              categoryTitle={process.env.NEXT_PUBLIC_CATEGORY1!}
+              displayAllProducts={false}
+            />
+            <Categories
+              categoryTitle={process.env.NEXT_PUBLIC_CATEGORY2!}
+              displayAllProducts={false}
+            />
+            <CustomAd />
+          </section>
 
-              <CustomAd />
-            </section>
-
-            <section>
-              <FeaturedProduct />
-              <FeaturedProduct />
-            </section>
-          </div>
+          <section>
+            <FeaturedProduct />
+            <FeaturedProduct />
+          </section>
         </div>
       </div>
 
@@ -59,17 +57,26 @@ export default function Home() {
       <section className="bg-gray-100 mb-2 --max-w-7xl mx-auto py-16 px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="text-center space-y-4">
-            <Package className="mx-auto transition hover:scale-105 text-lime-600" size={78} />
+            <Package
+              className="mx-auto transition hover:scale-105 text-lime-600"
+              size={78}
+            />
             <h3 className="text-xl font-semibold">Free Shipping</h3>
             <p className="text-gray-600">On orders over NGN 100,000</p>
           </div>
           <div className="text-center space-y-4">
-            <HandCoins className="mx-auto transition hover:scale-105 text-lime-600" size={78} />
+            <HandCoins
+              className="mx-auto transition hover:scale-105 text-lime-600"
+              size={78}
+            />
             <h3 className="text-xl font-semibold">Money Back</h3>
             <p className="text-gray-600">30 day guarantee</p>
           </div>
           <div className="text-center space-y-4">
-            <CreditCard className="mx-auto transition hover:scale-105 text-lime-600" size={78} />
+            <CreditCard
+              className="mx-auto transition hover:scale-105 text-lime-600"
+              size={78}
+            />
             <h3 className="text-xl font-semibold">Secure Payment</h3>
             <p className="text-gray-600">100% secure checkout</p>
           </div>
@@ -130,6 +137,45 @@ export default function Home() {
         </div>
       </main>
      */}
+      <div className="mx-auto max-w-6xl px-4 py-8">
+        <div className="text-center">
+          <h2 className="text-2xl font-bold text-[#65A30D] sm:text-3xl">
+            Our Featured Partners
+          </h2>
+          <p className="mt-2 text-gray-500 text-sm sm:text-base">
+            We collaborate with top brands to bring you the best products and
+            services.
+          </p>
+        </div>
+
+        <div className="mt-6 flex items-center justify-center gap-6 overflow-x-auto px-4 py-3 scrollbar-hide">
+          <img
+            src="/partners/partner1.png"
+            alt="Partner 1"
+            className="h-12 sm:h-16 object-contain"
+          />
+          <img
+            src="/partners/partner2.png"
+            alt="Partner 2"
+            className="h-12 sm:h-16 object-contain"
+          />
+          <img
+            src="/partners/partner3.png"
+            alt="Partner 3"
+            className="h-12 sm:h-16 object-contain"
+          />
+          <img
+            src="/partners/partner4.png"
+            alt="Partner 4"
+            className="h-12 sm:h-16 object-contain"
+          />
+          <img
+            src="/partners/partner5.png"
+            alt="Partner 5"
+            className="h-12 sm:h-16 object-contain"
+          />
+        </div>
+      </div>
 
       <Footer />
     </div>
