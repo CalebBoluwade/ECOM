@@ -1,7 +1,7 @@
 import dbConnector from "@/lib/db/connector";
-import clientPromise from "@/lib/db/mongodb";
-import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
 import NextAuth, { NextAuthOptions } from "next-auth";
+import CredentialsProvider from "next-auth/providers/credentials";
+// import { SQLiteAdapter } from "@next-auth/sqlite-adapter";
 import GoogleProvider from "next-auth/providers/google";
 
 interface IProfile {
@@ -10,11 +10,34 @@ interface IProfile {
 }
 
 export const authConfigOptions = {
-  adapter: MongoDBAdapter(clientPromise),
+  // adapter: SQLiteAdapter(dbConnector),
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+    }),
+    CredentialsProvider({
+      name: "Credentials",
+      credentials: {
+        username: { label: "Username", type: "text" },
+        password: { label: "Password", type: "password" },
+      },
+      async authorize(credentials) {
+        const db = await dbConnector();
+        const user = await db.get(
+          "SELECT * FROM users WHERE username = ? AND password = ?",
+          credentials?.username,
+          credentials?.password
+        );
+
+        console.log(user)
+
+        // if (user) {
+        //   return { id: user.id, name: user.username };
+        // }
+
+        return null;
+      },
     }),
   ],
   secret: process.env.NEXTAUTH_SECRET,
@@ -30,6 +53,7 @@ export const authConfigOptions = {
   callbacks: {
     async jwt({ token, profile, user }) {
       if (profile) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         token.isAdmin = (user as any).isAdmin || false;
         token.firstName = (profile as IProfile).given_name ??= "";
         token.lastName = (profile as IProfile).family_name ??= "";

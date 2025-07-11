@@ -1,9 +1,9 @@
 import {
   addItem,
-  addToWishlist,
-  deleteItem,
   removeFromWishlist,
-  removeItem,
+  // addToWishlist,
+  // deleteItem,
+  // removeItem,
 } from "@/lib/store/slices/cartSlice";
 import { RootState } from "@/lib/store/store";
 import Image from "next/image";
@@ -15,7 +15,7 @@ import {
   calculateItemPrice,
   capitalizeFirstLetter,
   formatPrice,
-} from "@/lib/utils";
+} from "@/lib/utils/index";
 import { Trash2 } from "lucide-react";
 
 interface CartItemProps
@@ -62,7 +62,7 @@ const WishListItem: React.FC<CartItemProps> = ({
           <div>
             <dt className="inline">Manufacturer:</dt>
             <dd className="inline">
-              {capitalizeFirstLetter(cartItem.manufacturer.name)}
+              {capitalizeFirstLetter(cartItem.manufacturer)}
             </dd>
           </div>
         </dl>

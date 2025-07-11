@@ -1,4 +1,3 @@
-import mongoose from "mongoose";
 
 export default [
   {
@@ -7,31 +6,31 @@ export default [
     "categories": ["Networking", "Wired Networking", "Switches"],
     "currency": "NGN",
     "description": `
-5 x Ethernet 10/100 Mbit/s  
-Atheros 7241 CPU, 400MHz  
-32MB DDR SDRAM  
-64MB NAND  
-USB 2.0 Port  
-PoE output on port 2-5 (max. 500mA per Port)  
-RouterOS L4 licence  
-Includes enclosure and power supply  
+5 x Ethernet 10/100 Mbit/s
+Atheros 7241 CPU, 400MHz
+32MB DDR SDRAM
+64MB NAND
+USB 2.0 Port
+PoE output on port 2-5 (max. 500mA per Port)
+RouterOS L4 licence
+Includes enclosure and power supply
 
-**Special Features:**  
-- MikroTik RouterBOARD RB750UP can power up to 4 connected devices via passive PoE.  
-- The output voltage is the same voltage applied to RB750UP (between 8 and 30V).  
-- Maximum output current per port: 500mA.  
+**Special Features:**
+- MikroTik RouterBOARD RB750UP can power up to 4 connected devices via passive PoE.
+- The output voltage is the same voltage applied to RB750UP (between 8 and 30V).
+- Maximum output current per port: 500mA.
 
-**MikroTik RouterOS v5.x (Level 4 License)**  
-- Free upgrades to MikroTik RouterOS v6.x  
-- License never expires  
-- Valid for one installation  
-- Unlimited number of interfaces  
-- Supports AP, wireless station/client, point-to-point, and point-to-multipoint setups  
-- RIP, OSPF, and BGP support  
-- Unlimited number of EoIP tunnels  
-- Up to 200 PPPoE, PPTP, L2TP, and OVPN tunnels  
-- Unlimited VLAN interfaces  
-- Up to 200 active hotspot users  
+**MikroTik RouterOS v5.x (Level 4 License)**
+- Free upgrades to MikroTik RouterOS v6.x
+- License never expires
+- Valid for one installation
+- Unlimited number of interfaces
+- Supports AP, wireless station/client, point-to-point, and point-to-multipoint setups
+- RIP, OSPF, and BGP support
+- Unlimited number of EoIP tunnels
+- Up to 200 PPPoE, PPTP, L2TP, and OVPN tunnels
+- Unlimited VLAN interfaces
+- Up to 200 active hotspot users
 - Up to 20 active User Manager sessions
     `,
     "warranty": "645675",
@@ -52,32 +51,32 @@ Includes enclosure and power supply
     "categories": ["Networking", "Wired Networking", "Switches", "Cisco"],
     "currency": "NGN",
     "description": `
-  **Device Type:**  
-  - Switch – 16 ports – Unmanaged  
-  
-  **Enclosure Type:**  
-  - Desktop / Rack-mountable – 1U  
-  
-  **Ports:**  
-  - 16x 10/100/1000 Mbps Ethernet ports  
-  
-  **Switching Capacity:**  
-  - 32 Gbps  
-  - Forwarding Performance (64-byte packet size): 23.8 Mpps  
-  
-  **MAC Address Table Size:**  
-  - 8000 entries  
-  
-  **Jumbo Frame Support:**  
-  - Yes  
-  
-  **Flow Control & Features:**  
-  - Layer 2 switching  
-  - Auto-negotiation, Auto-uplink (Auto MDI/MDI-X)  
-  - Weighted Round Robin (WRR) queuing  
-  - Quality of Service (QoS)  
-  - Cable diagnostics, Loop detection  
-  - Energy Efficient Ethernet (EEE)  
+  **Device Type:**
+  - Switch – 16 ports – Unmanaged
+
+  **Enclosure Type:**
+  - Desktop / Rack-mountable – 1U
+
+  **Ports:**
+  - 16x 10/100/1000 Mbps Ethernet ports
+
+  **Switching Capacity:**
+  - 32 Gbps
+  - Forwarding Performance (64-byte packet size): 23.8 Mpps
+
+  **MAC Address Table Size:**
+  - 8000 entries
+
+  **Jumbo Frame Support:**
+  - Yes
+
+  **Flow Control & Features:**
+  - Layer 2 switching
+  - Auto-negotiation, Auto-uplink (Auto MDI/MDI-X)
+  - Weighted Round Robin (WRR) queuing
+  - Quality of Service (QoS)
+  - Cable diagnostics, Loop detection
+  - Energy Efficient Ethernet (EEE)
     `,
     "warranty": "",
     "reviews": [],
@@ -89,7 +88,7 @@ Includes enclosure and power supply
     "slug": "cisco-110-series-16-port-gigabit-unmanaged-switch-sg110-16",
     "specifications": [],
     "isFeatured": false
-  },  
+  },
   {
     "name": "Test Product 2",
     "cartQuantity": 1,
@@ -115,23 +114,23 @@ Includes enclosure and power supply
     "categories": ["Networking", "Wired Networking", "Switches", "Cisco"],
     "currency": "NGN",
     "description": `
-  **Ports:**  
-  - 24 x Fast Ethernet Ports  
-  
-  **Performance:**  
-  - 4.8 Gbps Switching Capacity  
-  - 3.6 Mpps Forwarding Capacity  
-  
-  **Network Standards:**  
-  - IEEE 802.3, 802.3u, 802.3ab, 802.3z, 802.3x, 802.3af  
-  
-  **Memory:**  
-  - 128MB RAM  
-  - 128MB Flash Memory  
-  
-  **Design & Features:**  
-  - Fanless, Rack-Mountable Design  
-  - Supports Jumbo Frames up to 9216 bytes  
+  **Ports:**
+  - 24 x Fast Ethernet Ports
+
+  **Performance:**
+  - 4.8 Gbps Switching Capacity
+  - 3.6 Mpps Forwarding Capacity
+
+  **Network Standards:**
+  - IEEE 802.3, 802.3u, 802.3ab, 802.3z, 802.3x, 802.3af
+
+  **Memory:**
+  - 128MB RAM
+  - 128MB Flash Memory
+
+  **Design & Features:**
+  - Fanless, Rack-Mountable Design
+  - Supports Jumbo Frames up to 9216 bytes
     `,
     "warranty": "",
     "reviews": [],
@@ -143,22 +142,22 @@ Includes enclosure and power supply
     "slug": "cisco-110-series-24-port-unmanaged-network-switch-sf110-24",
     "specifications": [],
     "isFeatured": false
-  },  
+  },
   {
     "name": "Cisco Catalyst 2960X-24TD-L Network Switch, 24 Gigabit Ethernet Ports, 2 10G SFP+ Uplink Ports",
     "cartQuantity": 1,
     "categories": ["Networking", "Wired Networking", "Switches", "Cisco"],
     "currency": "NGN",
     "description": `
-  **Overview:**  
-  The Cisco Catalyst 2960X-24TD-L is a fixed-configuration, stackable Gigabit Ethernet switch designed for enterprise-class access in campus and branch applications. It runs on Cisco IOS Software and supports simple device and network management. The switch includes advanced Layer 2 and Layer 3 features, optional PoE+ power, and enhanced application visibility, network reliability, and resiliency.  
-  
-  **Features:**  
-  - **Ethernet Port Configuration:** 24 x 10/100/1000 Gigabit Ethernet ports, 2 x 10G SFP+ uplink ports  
-  - **Device Management:** Web UI, over-the-air access via Bluetooth, and CLI (command-line interface)  
-  - **Console Access:** SNMP (Simple Network Management Protocol) and RJ-45 or USB console access  
-  - **Security Features:** 802.1X, Switched Port Analyzer (SPAN), and Bridge Protocol Data Unit (BPDU) Guard  
-  - **Warranty:** Enhanced limited lifetime warranty  
+  **Overview:**
+  The Cisco Catalyst 2960X-24TD-L is a fixed-configuration, stackable Gigabit Ethernet switch designed for enterprise-class access in campus and branch applications. It runs on Cisco IOS Software and supports simple device and network management. The switch includes advanced Layer 2 and Layer 3 features, optional PoE+ power, and enhanced application visibility, network reliability, and resiliency.
+
+  **Features:**
+  - **Ethernet Port Configuration:** 24 x 10/100/1000 Gigabit Ethernet ports, 2 x 10G SFP+ uplink ports
+  - **Device Management:** Web UI, over-the-air access via Bluetooth, and CLI (command-line interface)
+  - **Console Access:** SNMP (Simple Network Management Protocol) and RJ-45 or USB console access
+  - **Security Features:** 802.1X, Switched Port Analyzer (SPAN), and Bridge Protocol Data Unit (BPDU) Guard
+  - **Warranty:** Enhanced limited lifetime warranty
     `,
     "warranty": "Enhanced Limited Lifetime Warranty",
     "reviews": [],
@@ -170,28 +169,28 @@ Includes enclosure and power supply
     "slug": "cisco-catalyst-2960x-24td-l-network-switch",
     "specifications": [],
     "isFeatured": false
-  },  
+  },
   {"name": "Cisco Catalyst WS-C3560V2-24TS-S Network Switch, 24 10/100 + 2 SFP + IPB",
     "cartQuantity": 1,
     "categories": ["Networking", "Wired Networking", "Switches", "Cisco"],
     "currency": "NGN",
     "description": `
-  **Overview:**  
-  The Cisco Catalyst 3560V2-24TS-S is an energy-efficient, next-generation Layer 3 Fast Ethernet switch designed for enterprise, retail, and branch-office environments. It supports Cisco EnergyWise technology, allowing companies to measure and manage power consumption to reduce costs and carbon footprint. With enhanced security, routing, and management capabilities, this switch is ideal for unified networks handling data, voice, and video.  
-  
-  **Features:**  
-  - **Port Configuration:** 24 x 10/100 Ethernet ports + 2 SFP-based Gigabit Ethernet ports  
-  - **Switching Capacity:** 32 Gbps  
-  - **Performance:** Supports up to 1000 VLANs and Switched Virtual Interfaces (SVIs)  
-  - **Routing Protocols:** RIP-1, RIP-2, HSRP, Static IP Routing  
-  - **Management & Security:**  
-    - Remote Management: SNMP 1, 2c, 3, RMON 1, 2, 3, 9, Telnet, HTTPS, TFTP, SSH  
-    - Security Features: 802.1X authentication, MAC address filtering, Dynamic ARP Inspection (DAI), SSH v2  
-  - **Layer 2 & Layer 3 Features:**  
-    - VLAN support, IGMP snooping, Spanning Tree Protocol (STP, RSTP, MSTP)  
-    - DHCP snooping, Dynamic Trunking Protocol (DTP), Port Aggregation Protocol (PAgP)  
-  - **Software Included:** Cisco IOS IP Base  
-  - **Form Factor:** Rack-mountable (1U)  
+  **Overview:**
+  The Cisco Catalyst 3560V2-24TS-S is an energy-efficient, next-generation Layer 3 Fast Ethernet switch designed for enterprise, retail, and branch-office environments. It supports Cisco EnergyWise technology, allowing companies to measure and manage power consumption to reduce costs and carbon footprint. With enhanced security, routing, and management capabilities, this switch is ideal for unified networks handling data, voice, and video.
+
+  **Features:**
+  - **Port Configuration:** 24 x 10/100 Ethernet ports + 2 SFP-based Gigabit Ethernet ports
+  - **Switching Capacity:** 32 Gbps
+  - **Performance:** Supports up to 1000 VLANs and Switched Virtual Interfaces (SVIs)
+  - **Routing Protocols:** RIP-1, RIP-2, HSRP, Static IP Routing
+  - **Management & Security:**
+    - Remote Management: SNMP 1, 2c, 3, RMON 1, 2, 3, 9, Telnet, HTTPS, TFTP, SSH
+    - Security Features: 802.1X authentication, MAC address filtering, Dynamic ARP Inspection (DAI), SSH v2
+  - **Layer 2 & Layer 3 Features:**
+    - VLAN support, IGMP snooping, Spanning Tree Protocol (STP, RSTP, MSTP)
+    - DHCP snooping, Dynamic Trunking Protocol (DTP), Port Aggregation Protocol (PAgP)
+  - **Software Included:** Cisco IOS IP Base
+  - **Form Factor:** Rack-mountable (1U)
     `,
     "warranty": "Standard Cisco Limited Warranty",
     "reviews": [],
@@ -261,27 +260,27 @@ Includes enclosure and power supply
       }
     ],
     "isFeatured": false
-  },  
+  },
   {
     "name": "Cisco SF110D-16HP | 110 Series 16-Port Unmanaged PoE Network Switch",
     "cartQuantity": 1,
     "categories": ["Networking", "Wired Networking", "Switches", "Cisco"],
     "currency": "NGN",
-    "description": `Overview:  
+    "description": `Overview:
   The Cisco SF110D-16HP is a reliable, high-performance 16-port Fast Ethernet switch designed for small businesses. It offers **plug-and-play** operation with no setup required and supports **Power over Ethernet (PoE)** on 8 of its 16 ports. The switch ensures seamless connectivity for IP phones, wireless access points, security cameras, and other PoE-enabled devices, making it an excellent choice for businesses looking for affordability, ease of use, and energy efficiency.
-  
-  **Features:**  
-  - **Port Configuration:** 16 x Fast Ethernet (10/100) ports, 8 with PoE support  
-  - **Switching Capacity:** 3.2 Gbps  
-  - **Forwarding Capacity:** 1.4 Mpps  
-  - **Power Over Ethernet (PoE):** Supports IEEE 802.3af PoE standard  
-  - **Energy Efficiency:** 802.3az (Energy Efficient Ethernet) support to reduce power consumption  
-  - **Fanless Design:** Silent operation, rack-mountable form factor  
-  - **Plug-and-Play:** No configuration or software installation needed  
-  - **Auto Cable Detection:** Automatically adjusts for incorrect cables  
-  - **Built-in QoS & Traffic Handling:**  
-    - Prioritizes voice/video traffic for smoother performance  
-    - Supports loop detection to prevent network interruptions  
+
+  **Features:**
+  - **Port Configuration:** 16 x Fast Ethernet (10/100) ports, 8 with PoE support
+  - **Switching Capacity:** 3.2 Gbps
+  - **Forwarding Capacity:** 1.4 Mpps
+  - **Power Over Ethernet (PoE):** Supports IEEE 802.3af PoE standard
+  - **Energy Efficiency:** 802.3az (Energy Efficient Ethernet) support to reduce power consumption
+  - **Fanless Design:** Silent operation, rack-mountable form factor
+  - **Plug-and-Play:** No configuration or software installation needed
+  - **Auto Cable Detection:** Automatically adjusts for incorrect cables
+  - **Built-in QoS & Traffic Handling:**
+    - Prioritizes voice/video traffic for smoother performance
+    - Supports loop detection to prevent network interruptions
     - Fast store-and-forward switching to filter out damaged packets`,
     "warranty": "Standard Cisco Limited Warranty",
     "reviews": [],
@@ -354,95 +353,95 @@ Includes enclosure and power supply
     "categories": ["Networking", "Wired Networking", "Switches", "Cisco"],
     "currency": "NGN",
     "description": `Affordable, Easy-to-Use Switches for Small Business Networks, with Zero Configuration Required
-  
+
   Give your office network a boost of speed and performance at a low price that takes almost no time to set up. Easily build a highly reliable network to connect your computers, printers, copiers and other office equipment. If your business is like most small companies, you do not have an IT staff to set up your network for you. Now you can have a high-performance, business-class office network that just works, right out of the box, with the Cisco 110 Series Unmanaged Switches. Users, workgroups, labs, departments or growing offices can now deliver large amounts of multimedia, image and video information across the network in almost no time.
-  
+
   Cisco 110 Series Unmanaged Switches deliver basic network connectivity and reliability for small businesses that is easy on the budget and without all the complexity. These switches provide all of the features, expandability and investment protection you expect from Cisco, with no installation software and nothing to configure. Just plug it in, connect your computers and other business equipment and get to work.
-  
+
   Cisco 110 Series Unmanaged Switches part of the Cisco Small Business networking solutions, are a line of unmanaged switches that provide wire-speed Fast Ethernet and Gigabit Ethernet connectivity to connect your small business office. Available in desktop and rack-mount models, these switches are designed to suit any office space with basic network needs and to optimize power efficiency. They use less power and provide the robust, reliable connectivity your business demands, as well as support for advanced features such as quality of service (QoS), loop detection and cable diagnostics, all in a switch that you can set up yourself in minutes. A business-class, affordable network solution, Cisco 110 Series switches bring the proven reliability and investment protection of Cisco networking solutions to your small business.
-  
+
   **Cisco SG110-16HP Specifications**
-  
-  **Standards**  
+
+  **Standards**
   IEEE 802.3 10BASE-T Ethernet, IEEE 802.3u 100BASE-TX Fast Ethernet, IEEE 802.3ab 1000BASE-T Gigabit Ethernet, IEEE 802.3z Gigabit Ethernet, IEEE 802.3x Flow Control, 802.1p priority, Energy Efficient Ethernet, 802.3af, Power over Ethernet
-  
-  **Cabling type**  
+
+  **Cabling type**
   Category 5e or better
-  
-  **LED indicators**  
+
+  **LED indicators**
   System/PWR, link/activity, 100M, PoE, Max PoE, cable diagnostics, loop detection, gigabit, mini-GBIC
-  
-  **Power supply**  
+
+  **Power supply**
   Internal, universal: 10-240VAC, 50-60 Hz
-  
-  **Lock slot**  
+
+  **Lock slot**
   Slot for Kensington lock
-  
-  **Ports**  
+
+  **Ports**
   16x RJ-45 connectors for 10BASE-T/100BASE-TX/1000BASE-T ports
-  
-  **Power over Ethernet (PoE)**  
-  Power Dedicated to PoE: 64W  
+
+  **Power over Ethernet (PoE)**
+  Power Dedicated to PoE: 64W
   Number of PoE Ports: 8
-  
-  **Fanless**  
+
+  **Fanless**
   Yes
-  
-  **Switching capacity**  
+
+  **Switching capacity**
   32 Gbps
-  
-  **Forwarding capacity**  
+
+  **Forwarding capacity**
   23.8 mpps (million packets per second) based on 64-byte packets
-  
-  **Head-of-line (HOL) blocking**  
+
+  **Head-of-line (HOL) blocking**
   HOL blocking prevention
-  
-  **Jumbo frame**  
+
+  **Jumbo frame**
   9216 bytes
-  
-  **Quality of service (QoS)**  
+
+  **Quality of service (QoS)**
   802.1p priority-based, 4 hardware queues, priority queuing and weighted round-robin (WRR)
-  
-  **Loop detection**  
+
+  **Loop detection**
   Helps discover loops in the network to avoid broadcast storms
-  
-  **Cable diagnostics**  
+
+  **Cable diagnostics**
   Quickly identify and troubleshoot network cable faults and/or shorts
-  
-  **Mounting options**  
+
+  **Mounting options**
   Desktop or Rack mount
-  
-  **Physical security lock**  
+
+  **Physical security lock**
   Kensington lock slot
-  
-  **Minimum Requirements**  
-  Devices supporting 802.3 Ethernet, 802.3u Faster Ethernet, or 802.3ab Gigabit Ethernet  
-  Cat5 or better Ethernet cable  
+
+  **Minimum Requirements**
+  Devices supporting 802.3 Ethernet, 802.3u Faster Ethernet, or 802.3ab Gigabit Ethernet
+  Cat5 or better Ethernet cable
   Network interface card for each computer
-  
-  **Compliance/certifications**  
+
+  **Compliance/certifications**
   UL (UL 60950), CSA (CSA 22.2), CE mark, FCC Part 15 (CFR 47) Class A, FCC Class B
-  
-  **Operating temperature**  
+
+  **Operating temperature**
   32 to 104 deg. F (0 to 40 deg. C)
-  
-  **Storage temperature**  
+
+  **Storage temperature**
   -4 to 158 deg. F (-20 to 70 deg. C)
-  
-  **Operating humidity**  
+
+  **Operating humidity**
   10% to 90%, relative, noncondensing
-  
-  **Storage humidity**  
+
+  **Storage humidity**
   5% to 90%, relative, noncondensing
-  
-  **System memory**  
-  128-MB RAM  
+
+  **System memory**
+  128-MB RAM
   128-MB Flash
-  
-  **Dimensions (WxDxH)**  
+
+  **Dimensions (WxDxH)**
   11 x 1.75 x 6.7″ (279.40 x 44.45 x 170.18mm)
-  
-  **Weight**  
+
+  **Weight**
   4.15 lbs (1.88kg)`,
     "warranty": "Standard Cisco Limited Warranty",
     "reviews": [],
@@ -508,43 +507,43 @@ Includes enclosure and power supply
       }
     ],
     "isFeatured": false
-  },  
+  },
   {
     "name": "Cisco SG110-24 | 24 Ports Gigabit Switch",
     "cartQuantity": 1,
     "categories": ["Networking", "Wired Networking", "Switches", "Cisco"],
     "currency": "NGN",
     "description": `
-  **Device Type:**  
-  - Switch – 24 ports – Unmanaged  
-  
-  **Enclosure Type:**  
-  - Desktop / Rack-mountable  
-  
-  **Ports:**  
-  - 24x 10/100/1000 Mbps Ethernet ports  
-  
-  **Power over Ethernet:**  
-  - Supports Power over Ethernet (PoE) models for devices such as IP phones, access points, etc.  
-  
-  **Switching Capacity:**  
-  - 48 Gbps  
-  - Forwarding Performance (64-byte packet size): High  
-  
-  **Reliability & Expandability:**  
-  - High reliability for small businesses  
-  - Simple plug-and-play setup with no configuration required  
-  
-  **QoS & Advanced Features:**  
-  - Quality of Service (QoS)  
-  - Loop detection  
-  - Cable diagnostics  
-  
-  **Power Efficiency:**  
-  - Energy-efficient Ethernet (EEE) for reduced power consumption  
-  
-  **Installation:**  
-  - No installation software needed, easy to set up  
+  **Device Type:**
+  - Switch – 24 ports – Unmanaged
+
+  **Enclosure Type:**
+  - Desktop / Rack-mountable
+
+  **Ports:**
+  - 24x 10/100/1000 Mbps Ethernet ports
+
+  **Power over Ethernet:**
+  - Supports Power over Ethernet (PoE) models for devices such as IP phones, access points, etc.
+
+  **Switching Capacity:**
+  - 48 Gbps
+  - Forwarding Performance (64-byte packet size): High
+
+  **Reliability & Expandability:**
+  - High reliability for small businesses
+  - Simple plug-and-play setup with no configuration required
+
+  **QoS & Advanced Features:**
+  - Quality of Service (QoS)
+  - Loop detection
+  - Cable diagnostics
+
+  **Power Efficiency:**
+  - Energy-efficient Ethernet (EEE) for reduced power consumption
+
+  **Installation:**
+  - No installation software needed, easy to set up
     `,
     "warranty": "",
     "reviews": [],
@@ -584,36 +583,36 @@ Includes enclosure and power supply
     "categories": ["Networking", "Wired Networking", "Switches", "Cisco"],
     "currency": "NGN",
     "description": `
-  **Device Type:**  
-  - Switch – 24 ports – Unmanaged  
-  
-  **Enclosure Type:**  
-  - Desktop / Rack-mountable  
-  
-  **Ports:**  
-  - 24x 10/100/1000 Mbps Ethernet ports  
-  
-  **Power over Ethernet:**  
-  - Supports Power over Ethernet (PoE) models for devices such as IP phones, access points, etc.  
-  
-  **Switching Capacity:**  
-  - 48 Gbps  
-  - Forwarding Performance (64-byte packet size): High  
-  
-  **Reliability & Expandability:**  
-  - High reliability for small businesses  
-  - Simple plug-and-play setup with no configuration required  
-  
-  **QoS & Advanced Features:**  
-  - Quality of Service (QoS)  
-  - Loop detection  
-  - Cable diagnostics  
-  
-  **Power Efficiency:**  
-  - Energy-efficient Ethernet (EEE) for reduced power consumption  
-  
-  **Installation:**  
-  - No installation software needed, easy to set up  
+  **Device Type:**
+  - Switch – 24 ports – Unmanaged
+
+  **Enclosure Type:**
+  - Desktop / Rack-mountable
+
+  **Ports:**
+  - 24x 10/100/1000 Mbps Ethernet ports
+
+  **Power over Ethernet:**
+  - Supports Power over Ethernet (PoE) models for devices such as IP phones, access points, etc.
+
+  **Switching Capacity:**
+  - 48 Gbps
+  - Forwarding Performance (64-byte packet size): High
+
+  **Reliability & Expandability:**
+  - High reliability for small businesses
+  - Simple plug-and-play setup with no configuration required
+
+  **QoS & Advanced Features:**
+  - Quality of Service (QoS)
+  - Loop detection
+  - Cable diagnostics
+
+  **Power Efficiency:**
+  - Energy-efficient Ethernet (EEE) for reduced power consumption
+
+  **Installation:**
+  - No installation software needed, easy to set up
     `,
     "warranty": "",
     "reviews": [],
@@ -827,7 +826,7 @@ Includes enclosure and power supply
       }
     ],
     "isFeatured": false
-  },  
+  },
   {
     "name": "Cisco WS-C2960+24PC-S Catalyst 2960 with 24Ports 370W POE Switch, 2 x SFP LAN Lite",
     "cartQuantity": 1,
@@ -974,6 +973,6 @@ Includes enclosure and power supply
     ],
     "isFeatured": false
   },
-    
-  
+
+
 ] satisfies IProduct[]

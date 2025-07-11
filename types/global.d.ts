@@ -35,6 +35,7 @@ interface IProduct {
 interface ProductQuery {
   // manufacturerId: mongoose.Types.ObjectId;
   $or?: Array<{
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     [key: string]: any;
   }>;
   category?: string;

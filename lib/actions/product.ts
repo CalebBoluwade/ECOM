@@ -1,183 +1,258 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use server";
 
 import { cache } from "react";
-import dbConnector from "../db/connector";
-import Product from "../db/models/Product";
 import products from "../utils/products";
-import mongoose from "mongoose";
+import { v4 as uuidv4 } from "uuid";
+import dbConnector from "../db/connector";
 
-// export const revalidate = 3600;
+
+
+// Helper function to parse product data
+function parseProduct(product: any): IProduct {
+  return {
+    ...product,
+    images: JSON.parse(product.images),
+    categories: JSON.parse(product.categories),
+    specifications: JSON.parse(product.specifications),
+    reviews: JSON.parse(product.reviews),
+    isFeatured: Boolean(product.isFeatured),
+    slug: product.id,
+    createdAt: new Date(product.createdAt * 1000),
+    updatedAt: new Date(product.updatedAt * 1000),
+  };
+}
 
 export async function seedProductData() {
-  await dbConnector();
+  const db = await dbConnector();
+  const insert = await db.prepare(`
+    INSERT INTO products (
+      id, name, price, currency, discountPercentage, cartQuantity,
+      images, quantity, description, categories, manufacturer,
+      isFeatured, specifications, warranty, reviews, createdAt, updatedAt
+    ) VALUES (
+      @id, @name, @price, @currency, @discountPercentage, @cartQuantity,
+      @images, @quantity, @description, @categories, @manufacturer,
+      @isFeatured, @specifications, @warranty, @reviews, @createdAt, @updatedAt
+    )
+  `);
 
-  const product = await Product.insertMany(products);
+  const transaction = await db.transaction(async () => {
+    // Clear existing data
+    (await db.prepare("DELETE FROM products")).run();
 
-  return product.map((product) => ({
-    name: product.name,
-    price: product.price,
-    currency: product.currency,
-    discountPercentage: product.discountPercentage,
-    cartQuantity: product.cartQuantity,
-    images: product.images,
-    quantity: product.quantity,
-    description: product.description,
-    categories: product.categories,
-    manufacturer: product.manufacturer,
-    isFeatured: product.isFeatured,
-    specifications: product.specifications,
-    warranty: product.warranty,
-    reviews: product.reviews,
-    slug: product._id, // Convert ObjectId to string
-  })) as IProduct[];
+    // Insert new products
+    const now = Math.floor(Date.now() / 1000);
+    for (const product of products) {
+      insert.run({
+        id: uuidv4(),
+        name: product.name,
+        price: product.price,
+        currency: product.currency,
+        discountPercentage: product.discountPercentage,
+        cartQuantity: product.cartQuantity,
+        images: JSON.stringify(product.images),
+        quantity: product.quantity,
+        description: product.description,
+        categories: JSON.stringify(product.categories),
+        manufacturer: product.manufacturer,
+        isFeatured: product.isFeatured ? 1 : 0,
+        specifications: JSON.stringify(product.specifications),
+        warranty: product.warranty,
+        reviews: JSON.stringify(product.reviews),
+        createdAt: now,
+        updatedAt: now,
+      });
+    }
+  });
+
+  transaction();
+
+  // Return all products
+  const stmt = await db.prepare("SELECT * FROM products");
+  return (await stmt.all()).map(parseProduct);
 }
 
 export const getProductById = cache(async (productId: string) => {
-  if (!mongoose.Types.ObjectId.isValid(productId)) return null;
-
-  await dbConnector();
-
-  const product = await Product.findOne({ _id: productId }).lean();
-
-  if (!product) return null;
-
-  return {
-    name: product.name,
-    price: product.price,
-    currency: product.currency,
-    discountPercentage: product.discountPercentage,
-    cartQuantity: product.cartQuantity,
-    images: product.images,
-    quantity: product.quantity,
-    description: product.description,
-    categories: product.categories,
-    manufacturer: product.manufacturer.toString(),
-    isFeatured: product.isFeatured,
-    warranty: product.warranty,
-    reviews: product.reviews,
-    slug: product._id.toString(), // Convert ObjectId to string
-  } as IProduct;
+  const db = await dbConnector();
+  const stmt = await db.prepare("SELECT * FROM products WHERE id = ?");
+  const product = await stmt.get(productId);
+  return product ? parseProduct(product) : null;
 });
 
 export const listFeaturedProducts = cache(
   async (filter: Partial<IProduct> = {}): Promise<IProduct[]> => {
-    await dbConnector();
+    const db = await dbConnector();
 
-    const products = await Product.find(filter)
-      .sort({ _id: -1 })
-      .limit(3)
-      .lean();
+    let query = "SELECT * FROM products WHERE isFeatured = 1";
+    const params: any[] = [];
 
-    return products.map((product) => ({
-      name: product.name,
-      price: product.price,
-      currency: product.currency,
-      discountPercentage: product.discountPercentage,
-      cartQuantity: product.cartQuantity,
-      images: product.images,
-      quantity: product.quantity,
-      description: product.description,
-      categories: product.categories,
-      manufacturer: product.manufacturer.toString(),
-      isFeatured: product.isFeatured,
-      warranty: product.warranty,
-      specifications: product.specifications,
-      reviews: product.reviews.flatMap((r) => ({
-        user: String(r.user),
-        rating: r.rating,
-        reviews: r.reviews,
-      })),
-      slug: product._id.toString(), // Convert ObjectId to string
-    })) as IProduct[];
+    if (filter.manufacturer) {
+      query += " AND manufacturer = ?";
+      params.push(filter.manufacturer);
+    }
+
+    query += " ORDER BY createdAt DESC LIMIT 3";
+
+    const stmt = await db.prepare(query);
+    return (await stmt.all(...params)).map(parseProduct);
   }
 );
 
 export const ListProducts = cache(
-  async (
-    filter: Partial<IProduct> = {}
-    // limit?: number
-  ): Promise<IProduct[]> => {
-    await dbConnector();
+  async (filter: Partial<IProduct> = {}): Promise<IProduct[]> => {
+    const db = await dbConnector();
 
-    const products = await Product.find(filter).sort({ _id: -1 }).lean();
-    // ?.limit(limit!);
+    let query = "SELECT * FROM products";
+    const conditions: string[] = [];
+    const params: any[] = [];
 
-    return products.map((product) => ({
-      _id: product._id.toString(),
-      name: product.name,
-      price: product.price,
-      currency: product.currency,
-      discountPercentage: product.discountPercentage,
-      cartQuantity: product.cartQuantity,
-      images: product.images,
-      quantity: product.quantity,
-      description: product.description,
-      categories: product.categories,
-      manufacturer: product.manufacturer.toString(),
-      isFeatured: product.isFeatured,
-      warranty: product.warranty,
-      specifications: product.specifications,
-      reviews: product.reviews.flatMap((r) => ({
-        user: String(r.user),
-        rating: r.rating,
-        reviews: r.reviews,
-      })),
-      slug: product._id.toString(), // Convert ObjectId to string
-    }));
+    for (const [key, value] of Object.entries(filter)) {
+      if (value !== undefined) {
+        if (key === "categories") {
+          // Special handling for categories array search
+          conditions.push("categories LIKE ?");
+          params.push(`%"${value.toString()}"%`);
+        } else {
+          conditions.push(`${key} = ?`);
+          params.push(value);
+        }
+      }
+    }
+
+    if (conditions.length) {
+      query += " WHERE " + conditions.join(" AND ");
+    }
+
+    query += " ORDER BY createdAt DESC";
+
+    const stmt = await db.prepare(query);
+    return (await stmt.all(...params)).map(parseProduct);
   }
 );
 
 export async function CreateProduct(p: IProduct): Promise<IProduct> {
-  const newProduct = new Product(p);
+  const db = await dbConnector();
+  const id = uuidv4();
+  const now = Math.floor(Date.now() / 1000);
 
-  const product = (await newProduct.save()).toJSON();
+  const stmt = await db.prepare(`
+    INSERT INTO products (
+      id, name, price, currency, discountPercentage, cartQuantity,
+      images, quantity, description, categories, manufacturer,
+      isFeatured, specifications, warranty, reviews, createdAt, updatedAt
+    ) VALUES (
+      @id, @name, @price, @currency, @discountPercentage, @cartQuantity,
+      @images, @quantity, @description, @categories, @manufacturer,
+      @isFeatured, @specifications, @warranty, @reviews, @createdAt, @updatedAt
+    )
+  `);
+
+  await stmt.run({
+    id,
+    name: p.name,
+    price: p.price,
+    currency: p.currency,
+    discountPercentage: p.discountPercentage,
+    cartQuantity: p.cartQuantity,
+    images: JSON.stringify(p.images),
+    quantity: p.quantity,
+    description: p.description,
+    categories: JSON.stringify(p.categories),
+    manufacturer: p.manufacturer,
+    isFeatured: p.isFeatured ? 1 : 0,
+    specifications: JSON.stringify(p.specifications),
+    warranty: p.warranty,
+    reviews: JSON.stringify(p.reviews),
+    createdAt: now,
+    updatedAt: now,
+  });
 
   return {
-    name: product.name,
-    price: product.price,
-    currency: product.currency,
-    discountPercentage: product.discountPercentage,
-    cartQuantity: product.cartQuantity,
-    images: product.images,
-    quantity: product.quantity,
-    description: product.description,
-    categories: product.categories,
-    manufacturer: product.manufacturer.toString(),
-    specifications: product.specifications,
-    isFeatured: product.isFeatured,
-    warranty: product.warranty,
-    reviews: product.reviews,
-    slug: product._id.toString(), // Convert ObjectId to string
+    ...p,
+    id,
+    slug: id,
+    createdAt: new Date(now * 1000),
+    updatedAt: new Date(now * 1000),
   } as IProduct;
 }
 
 export const EditProduct = async (product: IProduct) => {
   try {
-    await Product.findByIdAndUpdate(product.slug, product, { new: true });
+    const db = await dbConnector();
+    const now = Math.floor(Date.now() / 1000);
 
-    return { success: true, message: "successful" };
+    const stmt = await db.prepare(`
+      UPDATE products SET
+        name = @name,
+        price = @price,
+        currency = @currency,
+        discountPercentage = @discountPercentage,
+        cartQuantity = @cartQuantity,
+        images = @images,
+        quantity = @quantity,
+        description = @description,
+        categories = @categories,
+        manufacturer = @manufacturer,
+        isFeatured = @isFeatured,
+        specifications = @specifications,
+        warranty = @warranty,
+        reviews = @reviews,
+        updatedAt = @updatedAt
+      WHERE id = @id
+    `);
+
+    const result = await stmt.run({
+      id: product.slug,
+      name: product.name,
+      price: product.price,
+      currency: product.currency,
+      discountPercentage: product.discountPercentage,
+      cartQuantity: product.cartQuantity,
+      images: JSON.stringify(product.images),
+      quantity: product.quantity,
+      description: product.description,
+      categories: JSON.stringify(product.categories),
+      manufacturer: product.manufacturer,
+      isFeatured: product.isFeatured ? 1 : 0,
+      specifications: JSON.stringify(product.specifications),
+      warranty: product.warranty,
+      reviews: JSON.stringify(product.reviews),
+      updatedAt: now,
+    });
+
+    return {
+      success: result.changes! > 0,
+      message: result.changes! > 0 ? "successful" : "no changes made",
+    };
   } catch (error) {
     if (error instanceof Error) {
       return { success: false, message: error.message };
     }
-
     return { success: false, message: "unknown error!" };
   }
 };
 
-export const DeleteProduct = async (slug: string) =>
-  await Product.findByIdAndDelete(slug);
-
-export const FilterProduct = async (lowerPrice: number, upperPrice: number) => {
-  const aggregation = await Product.aggregate([
-    { $match: { price: { $gte: lowerPrice, $lte: upperPrice } } },
-  ]);
-
-  console.debug(aggregation);
+export const DeleteProduct = async (slug: string) => {
+  const db = await dbConnector();
+  const stmt = await db.prepare("DELETE FROM products WHERE id = ?");
+  const result = await stmt.run(slug);
+  return result.changes! > 0;
 };
 
-// Search and filter products
-async function searchProducts({
+export const FilterProduct = async (lowerPrice: number, upperPrice: number) => {
+  const db = await dbConnector();
+  const stmt = await db.prepare(`
+    SELECT * FROM products
+    WHERE price BETWEEN ? AND ?
+    ORDER BY price
+  `);
+  const results = await stmt.all(lowerPrice, upperPrice);
+  console.debug(results);
+  return results.map(parseProduct);
+};
+
+export const searchProducts = async ({
   searchTerm = "",
   category = "",
   minPrice = 0,
@@ -193,83 +268,57 @@ async function searchProducts({
   inStock: boolean;
   page: number;
   limit: number;
-}) {
-  try {
-    // Build query
-    const query: ProductQuery = {};
+}) => {
+  const db = await dbConnector();
 
-    // Add text search if provided
-    if (searchTerm) {
-      query.$or = [
-        { name: { $regex: searchTerm, $options: "i" } },
-        { description: { $regex: searchTerm, $options: "i" } },
-      ];
-    }
+  let query = `
+    SELECT * FROM products
+    WHERE (name LIKE @searchTerm OR description LIKE @searchTerm)
+    AND price >= @minPrice
+  `;
 
-    // Add category filter
-    if (category) {
-      query.category = category;
-    }
+  const params: any = {
+    searchTerm: `%${searchTerm}%`,
+    minPrice,
+  };
 
-    // Add price range
-    query.price = { $gte: minPrice };
-    if (maxPrice !== Infinity) {
-      query.price.$lte = maxPrice;
-    }
-
-    // Add stock filter if specified
-    if (typeof inStock === "boolean") {
-      query.inStock = inStock;
-    }
-
-    // Calculate skip value for pagination
-    const skip = (page - 1) * limit;
-
-    // Execute query with pagination and sorting
-    const product = await Product.find(query)
-      // .sort({ [sortBy]: sortOrder })
-      .skip(skip)
-      .limit(limit)
-      .lean();
-
-    return products.map((product) => ({
-      name: product.name,
-      price: product.price,
-      currency: product.currency,
-      discountPercentage: product.discountPercentage,
-      cartQuantity: product.cartQuantity,
-      images: product.images,
-      quantity: product.quantity,
-      description: product.description,
-      categories: product.categories,
-      manufacturer: product.manufacturer.toString(),
-      isFeatured: product.isFeatured,
-      warranty: product.warranty,
-      specifications: product.specifications,
-      reviews: product.reviews.map((r: any) => ({
-        user: String(r.user),
-        rating: r.rating,
-        reviews: r.reviews,
-      })),
-      slug: product.slug, // Convert ObjectId to string
-    }));
-  } catch (error: any) {
-    throw new Error(`Error searching products: ${error.message}`);
+  if (maxPrice !== Infinity) {
+    query += " AND price <= @maxPrice";
+    params.maxPrice = maxPrice;
   }
-}
 
-export const DistinctCategories = async () => {
-  const distinctCategoriesAggregation = await Product.aggregate<{
-    _id: string;
-  }>([
-    { $unwind: "$categories" }, // Unwind the categories array
-    { $group: { _id: "$categories" } }, // Group by category
-    { $sort: { _id: 1 } }, // Optional: Sort alphabetically
-  ]).exec();
+  if (category) {
+    query += " AND categories LIKE @category";
+    params.category = `%"${category}"%`;
+  }
 
-  const distinctCategories = distinctCategoriesAggregation.map(
-    (category) => category._id
-  );
+  if (typeof inStock === "boolean") {
+    query += inStock ? " AND quantity > 0" : " AND quantity <= 0";
+  }
 
-  return distinctCategories;
+  const offset = (page - 1) * limit;
+  query += " ORDER BY createdAt DESC LIMIT @limit OFFSET @offset";
+  params.limit = limit;
+  params.offset = offset;
+
+  const stmt = await db.prepare(query);
+  return (await stmt.all(...params)).map(parseProduct);
+};
+
+export const DistinctCategories = async (): Promise<string[]> => {
+  const db = await dbConnector();
+
+  // Get all categories from all products
+  const stmt = await db.prepare("SELECT categories FROM products");
+  const allProducts = await stmt.all();
+
+  // Extract and flatten all categories
+  const categoriesSet = new Set<string>();
+  for (const product of allProducts) {
+    const categories = product.categories;
+    categories.forEach((cat: string) => categoriesSet.add(cat));
+  }
+
+  // Convert to array and sort
+  return Array.from(categoriesSet).sort((a, b) => a.localeCompare(b));
 };

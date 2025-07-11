@@ -4,10 +4,9 @@ import { RootState } from "@/lib/store/store";
 import {
   calculateSubtotal,
   formatPrice,
-} from "@/lib/utils";
-import CartItem from "@/src/components/CartItem";
+} from "@/lib/utils/index";
+// import CartItem from "@/src/components/CartItem";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import WishlistItem from "./WishListItem";
@@ -23,7 +22,6 @@ const CartWishList = ({
   currency: string;
 }) => {
   console.log(wishlist);
-  const router = useRouter();
   const [cartVAT] = useState<number>(
     Number(process.env.NEXT_PUBLIC_VAT!) || 0.75
   );
@@ -107,7 +105,7 @@ const CartWishList = ({
 
 const mapStateToProps = (state: RootState) => ({
   cartTotal: state.cart.totalPrice,
-  currency: state.cart.items.at(0)?.currency || "NGN",
+  currency: state.cart.items.at(0)?.currency ?? "NGN",
   wishlist: state.cart.wishlist,
 });
 

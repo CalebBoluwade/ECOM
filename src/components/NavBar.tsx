@@ -1,13 +1,11 @@
 "use client";
+/* eslint-disable @typescript-eslint/no-unused-vars */
 
 import {
-  ChevronDown,
-  ChevronRight,
   Heart,
   Home,
   Menu,
   Package,
-  Search,
   ShoppingBag,
   Store,
   Target,
@@ -17,28 +15,35 @@ import {
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import SearchComponent from "./Search/Search";
-import { useSession } from "next-auth/react";
-import Image from "next/image";
-import { formatPrice } from "../../lib/utils";
-import { RootState } from "@/lib/store/store";
 import { connect } from "react-redux";
 import {
   fetchDistinctCategories,
   fetchProducts,
 } from "@/lib/store/actions/Products";
-import { useAppDispatch } from "@/lib/store/store";
+import { useAppDispatch, RootState } from "@/lib/store/store";
 import { fetchBrands } from "@/lib/store/actions/Brands";
+import { formatPrice } from "@/lib/utils/index";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuIndicator,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  navigationMenuTriggerStyle,
+  NavigationMenuViewport,
+} from "@/components/ui/navigation-menu";
 
 const NavBar = ({
   cartTotal,
-  distinctCategories,
-}: // products,
+}: // distinctCategories,
+// products,
 {
   cartTotal: number;
   distinctCategories: string[];
   products: IProduct[];
 }) => {
-  const { data: session } = useSession();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [openCategories, setOpenCategories] = useState<boolean>(false);
   const [cartVAT] = useState<number>(
@@ -141,75 +146,91 @@ const NavBar = ({
         </Link>
       </div> */}
 
-        <ul className="hidden lg:flex items-center gap-6">
-          <div className="relative group">
-            <button className="flex items-center gap-1 text-gray-700 hover:text-lime-600">
-              Shop
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-4 w-4 transition-transform duration-300 group-hover:rotate-180"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M19 9l-7 7-7-7"
-                />
-              </svg>
-            </button>
+        <NavigationMenu>
+          <NavigationMenuList className="flex items-center gap-3">
+            <NavigationMenuItem>
+              <NavigationMenuTrigger>Our Shop</NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ul className="grid w-[400px] gap-2 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                  <li>
+                    <NavigationMenuLink
+                      asChild
+                      className={navigationMenuTriggerStyle()}
+                    >
+                      <Link
+                        href="/categories"
+                        className="block px-4 py-2 text-gray-700 hover:bg-lime-100 hover:text-lime-600"
+                      >
+                        Categories
+                      </Link>
+                    </NavigationMenuLink>
+                  </li>
+                  <li>
+                    <NavigationMenuLink asChild>
+                      <Link
+                        href="/brands"
+                        className="block px-4 py-2 text-gray-700 hover:bg-lime-100 hover:text-lime-600"
+                      >
+                        Brands
+                      </Link>
+                    </NavigationMenuLink>
+                  </li>
+                  <li>
+                    <NavigationMenuLink asChild>
+                      <Link
+                        href="/delivery"
+                        className="block px-4 py-2 text-gray-700 hover:bg-lime-100 hover:text-lime-600"
+                      >
+                        Delivery
+                      </Link>
+                    </NavigationMenuLink>
+                  </li>
+                  <li>
+                    <NavigationMenuLink asChild>
+                      <Link
+                        href="/stores"
+                        className="block px-4 py-2 text-gray-700 hover:bg-lime-100 hover:text-lime-600"
+                      >
+                        Stores
+                      </Link>
+                    </NavigationMenuLink>
+                  </li>
+                </ul>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
 
-            <div className="absolute bg-white shadow-md mt-2 rounded-md w-48 hidden group-hover:flex flex-col">
-              <ul className="flex flex-col">
-                <li>
-                  <Link
-                    href="/categories"
-                    className="block px-4 py-2 text-gray-700 hover:bg-lime-100 hover:text-lime-600"
-                  >
-                    Categories
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/brands"
-                    className="block px-4 py-2 text-gray-700 hover:bg-lime-100 hover:text-lime-600"
-                  >
-                    Brands
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/delivery"
-                    className="block px-4 py-2 text-gray-700 hover:bg-lime-100 hover:text-lime-600"
-                  >
-                    Delivery
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/stores"
-                    className="block px-4 py-2 text-gray-700 hover:bg-lime-100 hover:text-lime-600"
-                  >
-                    Stores
-                  </Link>
-                </li>
-              </ul>
-            </div>
+            <NavigationMenuItem>
+              <NavigationMenuLink asChild>
+                <Link
+                  href="/contact"
+                  className="text-gray-700 hover:text-lime-600"
+                >
+                  Contact Us
+                </Link>
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+
+            <NavigationMenuItem>
+              <NavigationMenuLink asChild>
+                <Link
+                  href="/about"
+                  className="text-gray-700 hover:text-lime-600"
+                >
+                  About Us
+                </Link>
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+          </NavigationMenuList>
+        </NavigationMenu>
+
+        <ul className="lg:flex items-center gap-6">
+          <div className="relative group">
+            <div className="absolute bg-white shadow-md mt-2 rounded-md w-48 hidden group-hover:flex flex-col"></div>
           </div>
 
-          <li>
-            <Link href="/about" className="text-gray-700 hover:text-lime-600">
-              About Us
-            </Link>
-          </li>
+          <li></li>
 
-          <li>
-            <Link href="/contact" className="text-gray-700 hover:text-lime-600">
-              Contact Us
-            </Link>
-          </li>
+          <li></li>
         </ul>
 
         {/* <div className="hidden sm:block">

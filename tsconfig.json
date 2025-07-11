@@ -6,7 +6,7 @@
     "skipLibCheck": true,
     "strict": true,
     "noEmit": true,
-    // "noUnusedParameters": false,
+    "noUnusedParameters": false,
     "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
     "module": "esnext",

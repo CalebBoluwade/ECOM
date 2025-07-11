@@ -4,7 +4,7 @@ import Link from "next/link";
 import React from "react";
 import { connect } from "react-redux";
 import { RootState } from "@/lib/store/store";
-import { capitalizeFirstLetter } from "@/lib/utils";
+import { capitalizeFirstLetter } from "@/lib/utils/index";
 
 const SearchFilter = ({
   // products,
@@ -22,7 +22,7 @@ const SearchFilter = ({
             className={`hover:text-black/55 text-white transition-colors p-2 text-lg bg-lime-600 ${
               index === 0 ? "rounded-t-lg" : ""
             } ${index === distinctCategories.length - 1 ? "rounded-b-lg" : ""}`}
-            key={index}
+            key={index + 1}
           >
             <Link
             className="decoration-0"

@@ -1,6 +1,5 @@
 "use client";
 
-// "use crate::client::Client";
 import SignInModal from "@/src/components/Auth/SignIn";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useRef } from "react";
@@ -17,7 +16,7 @@ export default function SignInPage() {
     <dialog
       ref={dialogRef}
       className="border rounded relative backdrop:bg-black/50"
-      // onClose={() => router.back()}
+      onClose={() => router.back()}
     >
       <button
         type="button"

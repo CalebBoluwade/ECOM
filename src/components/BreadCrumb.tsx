@@ -1,6 +1,6 @@
 "use client";
 
-import { capitalizeFirstLetter } from "@/lib/utils";
+import { capitalizeFirstLetter } from "@/lib/utils/index";
 import { ChevronRight, Store } from "lucide-react";
 import Link from "next/link";
 import React from "react";
@@ -8,7 +8,6 @@ import React from "react";
 const BreadCrumb = () => {
   const loc = typeof window !== "undefined" ? window.location.pathname : "";
   const paths = loc.split("/").filter((p) => p !== "");
-  // console.log(paths);
 
   return (
     <nav aria-label="Breadcrumb" className="my-3">

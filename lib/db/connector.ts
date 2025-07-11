@@ -1,26 +1,84 @@
 "use server";
+// import Database from "better-sqlite3";
+import sqlite3 from "sqlite3";
+import { open } from "sqlite";
 
-import mongoose from "mongoose";
+export async function dbConnector() {
+  // Database instance with WAL mode for better concurrency
 
-async function dbConnector() {
-  mongoose.set("strictQuery", true);
+  // Initialize the database
+  // if (!db) {
+  const db = open({
+    filename: "./db.sqlite",
+    driver: sqlite3.Database,
+  });
 
-  return await mongoose.connect(process.env.MONGODB_URI!, {
-    appName: "E-commerce Store",
-    dbName: "ecommerce_store",
-    // heartbeatFrequencyMS: 5000,
-    // connectTimeoutMS: 20000,
-    // retryReads: true
-  })
-  // .then(() => console.log("Connection Successful"))
-  // .catch((error) => handleError(error));
+  // Create products table with proper indexes
+  (await db).exec(
+    `
+      CREATE TABLE IF NOT EXISTS products (
+        id TEXT PRIMARY KEY,
+        name TEXT NOT NULL,
+        price REAL NOT NULL,
+        currency TEXT NOT NULL,
+        discountPercentage REAL,
+        cartQuantity INTEGER,
+        images TEXT NOT NULL,
+        quantity INTEGER,
+        description TEXT,
+        categories TEXT NOT NULL,
+        manufacturer TEXT,
+        isFeatured INTEGER DEFAULT 0,
+        specifications TEXT NOT NULL,
+        warranty TEXT,
+        reviews TEXT NOT NULL,
+        createdAt INTEGER DEFAULT (strftime('%s', 'now')),
+        updatedAt INTEGER DEFAULT (strftime('%s', 'now'))
+    `
+  );
+
+  // Create indexes for better query performance
+  (await db).exec(
+    `
+      CREATE INDEX IF NOT EXISTS idx_products_featured
+      ON products(isFeatured)
+    `
+  );
+
+  (await db).exec(
+    `
+      CREATE INDEX IF NOT EXISTS idx_products_price
+      ON products(price)
+    `
+  );
+
+  (await db).exec(
+    `
+      CREATE INDEX IF NOT EXISTS idx_products_manufacturer
+      ON products(manufacturer)
+    `
+  );
+
+  (await db).exec(
+    `
+      CREATE INDEX IF NOT EXISTS idx_products_categories
+      ON products(categories)
+    `
+  );
+  // }
+
+  // Close the database connection when the process exits
+  process.on("exit", async () => {
+    if (await db) {
+      (await db).close();
+    }
+  });
+
+  return db;
 }
 
-// if (mongoose.connection)
-  mongoose.connection.on("error", (err) => handleError(err));
-
-const handleError = (error: Error) => {
-  throw new Error("Connection failed!" + error.message);
-};
+// const handleError = (error: Error) => {
+//   throw new Error("Connection failed!" + error.message);
+// };
 
 export default dbConnector;

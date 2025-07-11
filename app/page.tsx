@@ -7,6 +7,7 @@ import React from "react";
 import GoogleAd from "@/src/components/Ads";
 import { CreditCard, HandCoins, Package } from "lucide-react";
 import CustomAd from "@/src/components/CustomAd";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -149,31 +150,22 @@ export default function Home() {
         </div>
 
         <div className="mt-6 flex items-center justify-center gap-6 overflow-x-auto px-4 py-3 scrollbar-hide">
-          <img
-            src="/partners/partner1.png"
-            alt="Partner 1"
-            className="h-12 sm:h-16 object-contain"
-          />
-          <img
-            src="/partners/partner2.png"
-            alt="Partner 2"
-            className="h-12 sm:h-16 object-contain"
-          />
-          <img
-            src="/partners/partner3.png"
-            alt="Partner 3"
-            className="h-12 sm:h-16 object-contain"
-          />
-          <img
-            src="/partners/partner4.png"
-            alt="Partner 4"
-            className="h-12 sm:h-16 object-contain"
-          />
-          <img
-            src="/partners/partner5.png"
-            alt="Partner 5"
-            className="h-12 sm:h-16 object-contain"
-          />
+          {[
+            "hughwade.jpeg",
+            "hughwade2.jpeg",
+            "loanplus.jpeg",
+            "lgs.jpeg",
+            "stanbic.jpeg",
+          ].map((t, i) => (
+            <Image
+              src={`/partners/${t}`}
+              key={i + 1}
+              alt={`Partner ${i + 1}`}
+              className="h-24 sm:h-36 w-24 sm:w-36 object-top rounded-full"
+              width={100}
+              height={100}
+            />
+          ))}
         </div>
       </div>
 

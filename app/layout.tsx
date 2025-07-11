@@ -6,7 +6,6 @@ import AntdRegistry from "@/src/hooks/antd";
 import AuthProvider from "@/src/components/Auth/Provider";
 import { ReactNode, Suspense } from "react";
 import Script from "next/script";
-// import { Main, NextScript } from "next/document";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -49,12 +48,14 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <Suspense>
         <AuthProvider>
 
           <NavBar />
           <AntdRegistry>{children}</AntdRegistry>
           {modal}
         </AuthProvider>
+        </Suspense>
         {/* <Main />
         <NextScript /> */}
       </body>

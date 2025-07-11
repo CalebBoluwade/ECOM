@@ -78,6 +78,7 @@ export const ListBrandProducts = cache(
       isFeatured: product.isFeatured,
       warranty: product.warranty,
       specifications: product.specifications,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       reviews: product.reviews.map((r: any) => ({
         user: String(r.user),
         rating: r.rating,

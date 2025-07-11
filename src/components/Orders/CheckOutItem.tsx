@@ -3,8 +3,8 @@ import { RootState } from "@/lib/store/store";
 import Image from "next/image";
 import React from "react";
 import { connect } from "react-redux";
-import { Dispatch } from "redux"; 
-import { calculateItemPrice, formatPrice } from "@/lib/utils";
+import { Dispatch } from "redux";
+import { calculateItemPrice, formatPrice } from "@/lib/utils/index";
 
 interface CartItemProps
   extends Pick<
@@ -42,7 +42,7 @@ const CheckOutItem: React.FC<CartItemProps> = ({ checkOutItem }) => {
 
           <div>
             <dt className="inline">Manufacturer:</dt>
-            <dd className="inline">{checkOutItem.manufacturer.name}</dd>
+            <dd className="inline">{checkOutItem.manufacturer}</dd>
           </div>
         </dl>
       </div>

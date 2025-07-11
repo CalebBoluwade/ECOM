@@ -76,15 +76,17 @@ const HomePageCTA = () => {
               <SwiperSlide key={slide.id}>
                 <div className="grid md:grid-cols-2 items-center gap-6">
                   <div className="w-full h-full">
-                    <img
+                    <Image
                       src="https://images.unsplash.com/photo-1678852524356-08188528aed9?q=80&w=2960&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                       alt="Slide 1"
                       className="w-full h-full object-cover"
+                      width={200}
+                      height={500}
                     />
                   </div>
                   <div className="text-center md:text-left flex flex-col justify-center items-center md:items-start">
                     <h2 className="text-2xl font-bold text-black sm:text-3xl md:text-5xl pb-10">
-                      Latest Technologies. 
+                      Latest Technologies.
                       Best Prices
                     </h2>
                     <p className="max-w-lg text-black/90 text-lg leading-relaxed">

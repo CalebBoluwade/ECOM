@@ -1,4 +1,4 @@
-import { calculateItemPrice } from "@/lib/utils";
+import { calculateItemPrice } from "@/lib/utils/index";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { fetchOrders } from "../actions/Orders";
 
