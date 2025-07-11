@@ -78,7 +78,7 @@ const NavBar = ({
   return (
     <nav
       //
-      className="flex sticky- fixed top-0 left-0 right-0 bg-white/65 backdrop-blur-md h-16 border-b text-sm px-4 py-4 right justify-between items-center z-10 mb-5"
+      className="flex fixed top-0 left-0 right-0 bg-white/65 backdrop-blur-md h-16 border-b text-sm px-4 py-4 right justify-between items-center z-10 mb-5"
     >
       <div className="max-w-screen-2xl mx-auto flex items-center justify-between gap-20">
         <Link href="/" className="text-teal-600">
@@ -149,7 +149,7 @@ const NavBar = ({
         <NavigationMenu>
           <NavigationMenuList className="flex items-center gap-3">
             <NavigationMenuItem>
-              <NavigationMenuTrigger>
+              <NavigationMenuTrigger className="mt-10">
                 <Link
                   href="/contact"
                   className="text-gray-700 hover:text-lime-600"
@@ -229,16 +229,6 @@ const NavBar = ({
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
-
-        <ul className="lg:flex items-center gap-6">
-          <div className="relative group">
-            <div className="absolute bg-white shadow-md mt-2 rounded-md w-48 hidden group-hover:flex flex-col"></div>
-          </div>
-
-          <li></li>
-
-          <li></li>
-        </ul>
 
         {/* <div className="hidden sm:block">
         <SearchComponent />
