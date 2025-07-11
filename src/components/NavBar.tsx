@@ -149,7 +149,14 @@ const NavBar = ({
         <NavigationMenu>
           <NavigationMenuList className="flex items-center gap-3">
             <NavigationMenuItem>
-              <NavigationMenuTrigger>Our Shop</NavigationMenuTrigger>
+              <NavigationMenuTrigger>
+                <Link
+                  href="/contact"
+                  className="text-gray-700 hover:text-lime-600"
+                >
+                  Our Shop
+                </Link>
+              </NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="grid w-[400px] gap-2 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
                   <li>

@@ -23,7 +23,7 @@ const Brand = ({ partnerBrands }: { partnerBrands: IBrand[] }) => {
   }, [dispatch, partnerBrands.length]);
 
   return (
-    <div className="mx-6 my-4">
+    <div className="mx-6 my-20">
       <BreadCrumb />
       <h2 className=" font-bold text-lime-600 mt-4 text-3xl">
         Associated Brands
